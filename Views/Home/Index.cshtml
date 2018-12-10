@@ -1,11 +1,60 @@
-﻿@model IEnumerable<WHATISNEXT.Models.upcomingMovies.Result>
+﻿@*@model IEnumerable<WHATISNEXT.Models.upcomingMovies.Result>*@
+@model WHATISNEXT.ViewModels.MainPageViewModel
 
 @{
     ViewBag.Title = "Home Page";
 }
 
+<div class="container">
 
-@Html.Partial("_UpComingMoviesTemplate")
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    @{
+                        var first = true;
+                    }
+              
+                        @foreach (var item in Model.UpComingMoviesViewModel)
+                        {
+                            <div class="carousel-item @(first ? Html.Raw("active") : Html.Raw(""))">
+                                <img class="d-block w-100" 
+                                     src="@String.Concat("https://image.tmdb.org/t/p/original", @Html.DisplayFor(modelItem => item.backdrop_path))" 
+                                     alt="@item.title">
+                                <div class="carousel-caption d-none d-md-block" style="white-space: nowrap; ">
+                                    <h4>@Html.DisplayFor(modelItem => item.title)</h4>
+
+                                </div>
+
+                            </div>
+                            first = false;
+                        }
+                    
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button"
+                   data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button"
+                   data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
 @Html.Partial("_PopularMovies")
 
 

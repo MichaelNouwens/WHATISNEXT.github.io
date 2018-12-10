@@ -9,12 +9,13 @@ using System.Web.Mvc;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using WHATISNEXT.Models;
+using WHATISNEXT.ViewModels;
 using System.Net;
 using System.IO;
 
 namespace WHATISNEXT.Controllers
 {
-  
+
     public class HomeController : Controller
     {
 
@@ -23,30 +24,51 @@ namespace WHATISNEXT.Controllers
         //The api key
         private string apiKey = "de669cb60954dc927229ebd64ca39d77";
         public string responseData = null;
+        public string prefix = null;
+
+
 
         // GET: /Home/
         [HttpGet]
         public async Task<ActionResult> Index()
         {
 
+
+            prefix = "movie/upcoming";
             using (var httpClient = new HttpClient { BaseAddress = baseAddress })
             {
-
+         
                 httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
-                string uri = "movie/upcoming?api_key=" + apiKey + "&language=en-US";
+                string uri = prefix + "?api_key=" + apiKey + "&language=en-US";
+
+
                 using (var response = await httpClient.GetAsync(uri))
                 {
+
                     string responseData = await response.Content.ReadAsStringAsync();
-                   var objResponse1 = JsonConvert.DeserializeObject<upcomingMovies.RootObject>(responseData);
-                   // var objResponse1 = JsonConvert.DeserializeObject<List<TheTMDB.RootObject>>(responseData);
+                    var objResponse1 = JsonConvert.DeserializeObject<upcomingMovies.RootObject>(responseData);
+                    // var objResponse1 = JsonConvert.DeserializeObject<List<TheTMDB.RootObject>>(responseData);
 
-                    
-                    IEnumerable<upcomingMovies.Result> lst = objResponse1.results.OfType<upcomingMovies.Result>().ToList();
 
-                    var CountAllTheUpcomignMovies = objResponse1.total_results;
-                    ViewBag.Count = CountAllTheUpcomignMovies;
+                    IList<upcomingMovies.Result> lst = objResponse1.results.OfType<upcomingMovies.Result>().ToList();
+                    //List<upcomingMovies.Result> lst = objResponse1.results.OfType<upcomingMovies.Result>().ToList();
 
-                    return View(lst);
+
+
+                    var vm = new MainPageViewModel();
+                    vm.UpComingMoviesViewModel = lst;
+
+                    //var me = vm.UpComingMoviesViewModel;
+                    //me.Select(x => x.backdrop_path).ToList();
+
+
+                    return View(vm);
+
+
+                    //var CountAllTheUpcomignMovies = objResponse1.total_results;
+                    //ViewBag.Count = CountAllTheUpcomignMovies;
+
+
 
 
                 }
