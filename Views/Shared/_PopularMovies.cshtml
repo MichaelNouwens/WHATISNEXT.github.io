@@ -1,2 +1,75 @@
-﻿<h1 class="text-center" style="color: #FF7200;">Popular Movies</h1>
+﻿@model WHATISNEXT.ViewModels.MainPageViewModel
 
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            <div id="carouselExampleControls2" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    @{
+                        var first = true;
+                    }
+
+                    @foreach (var item in Model.PopularMoviesViewModel)
+                    {
+                        <div class="carousel-item @(first ? Html.Raw("active") : Html.Raw(""))">
+                            <img class="d-block w-100"
+                                 src="@String.Concat("https://image.tmdb.org/t/p/original", @Html.DisplayFor(modelItem => item.backdrop_path))"
+                                 alt="@item.title">
+                            <div class="carousel-caption d-none d-md-block" style="white-space: nowrap; ">
+                                <h4>@Html.DisplayFor(modelItem => item.title)</h4>
+
+                            </div>
+
+                        </div>
+                        first = false;
+                    }
+
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls2" role="button"
+                   data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls2" role="button"
+                   data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <div class="row p-4">
+        <div class="col-4">
+            @*<a href="#" target="_blank">
+                    <span class="fa-stack fa-lg">
+                        <i class="fa fa-circle-thin fa-stack-2x"></i>
+                        <i class="fa fa-heart-o fa-stack-2x"></i>
+                    </span>
+                </a>*@
+        </div>
+        <p class="col-4 text-center justify-content-center" style="color: #FF7200;">Popular Movies</p>
+        <nav class="col-4" aria-label="Pages">
+
+            <ul class=" pagination justify-content-end">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+
+
+
+</div>
