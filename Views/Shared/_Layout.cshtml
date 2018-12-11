@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" >
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 
         <img class="navbar-brand" src="~/Content/WIN.png" height="70" />
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,14 +21,14 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 @*<li class="nav-item">
-            <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Pricing</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-        </li>*@
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>*@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Genres
@@ -36,7 +36,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Movie</a>
                         <a class="dropdown-item" href="#">TV</a>
-                 
+
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -49,7 +49,7 @@
                         <a class="dropdown-item" href="#">Now playing movies</a>
                         <a class="dropdown-item" href="#">Popular movies</a>
                         @*<div class="dropdown-divider"></div>*@
-        
+
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -62,12 +62,12 @@
                         <a class="dropdown-item" href="#">On the air TV shows</a>
                         <a class="dropdown-item" href="#">Airing today TV shows</a>
                         @*<div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>*@
+                            <a class="dropdown-item" href="#">Something else here</a>*@
                     </div>
-                </li>         
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       You
+                        You
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Rate a TV show</a>
@@ -89,9 +89,55 @@
     </nav>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+  
+        <footer class="container-fluid bg-grey py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6 ">
+                                <div class="logo-part">
+                   
+                                    <a href="https://www.themoviedb.org" target="_blank">
+
+                                        <img src="~/Content/tmdblogo.png" class="w-50 logo-footer">
+                                    </a>
+                                  
+                                </div>
+                            </div>
+                            <div class="col-md-6 px-4">
+                                <h6> About Me</h6>
+                          
+                                <a href="#" class="btn-footer"> Github</a><br>
+                                <a href="#" class="btn-footer"> LinkedIn </a><br />
+                                <a href="#" class="btn-footer"> Website</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6 px-4">
+                                <h6>Quick Links</h6>
+                                <div class="row ">
+                                    <div class="col-md-6">
+                                        <ul>
+                                            <li> <a href="#"> Home</a> </li>
+                                            <li> <a href="#"> Movies</a> </li>
+                                            <li> <a href="#"> TV Series</a> </li>
+                                            <li> <a href="#"> Favourites</a> </li>
+                                            <li> <a href="#"> Watch List</a> </li>
+                                            <li> <a href="#"> Search</a> </li>
+                                        </ul>
+                                    </div>
+                                   
+                                </div>
+                            </div>
+  
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </footer>
     </div>
 

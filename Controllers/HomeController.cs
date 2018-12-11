@@ -60,13 +60,17 @@ namespace WHATISNEXT.Controllers
                 // var objResponse1 = JsonConvert.DeserializeObject<List<TheTMDB.RootObject>>(responseData);
 
 
+                var getTotalPages_upcomingmovies = objResponse1.total_pages;
+                var getTotalPages_popularmovies = objResponse2.total_pages;
                 IList<upcomingMovies.Result> lst = objResponse1.results.OfType<upcomingMovies.Result>().ToList();
                 IList<popularMovies.Result> lst2 = objResponse2.results.OfType<popularMovies.Result>().ToList();
+             
 
                 var vm = new MainPageViewModel();
                 vm.UpComingMoviesViewModel = lst;
                 vm.PopularMoviesViewModel = lst2;
-
+                vm.TotalPagesPopularmovies = getTotalPages_popularmovies;
+                vm.TotalPagesUpcomingmovies = getTotalPages_upcomingmovies;
 
                 return View(vm);
 

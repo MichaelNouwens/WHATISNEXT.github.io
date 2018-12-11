@@ -5319,8 +5319,8 @@ input[type="button"].btn-block {
     padding: 0.5rem 0.75rem;
     margin-left: -1px;
     line-height: 1.25;
-    color: #4582EC;
-    background-color: #fff;
+    color: #fff;
+    background-color: #FF7200;
     border: 1px solid #ddd;
 }
 
@@ -5328,7 +5328,7 @@ input[type="button"].btn-block {
         z-index: 2;
         color: #1559cf;
         text-decoration: none;
-        background-color: #e9ecef;
+        background-color: #fff;
         border-color: #ddd;
     }
 
