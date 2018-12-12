@@ -32,12 +32,14 @@ namespace WHATISNEXT.Controllers
         {
             var prefix_upcomingMovies = "movie/upcoming";
             var prefix_popularMovies = "movie/popular";
-
+            var LanguageEnglish = "en-US";
+            var page_popularMoviesStart = 1;
+           // var page_popularMoviesEnd = 902;
             using (var httpClient = new HttpClient { BaseAddress = baseAddress })
             {
                 httpClient.DefaultRequestHeaders.TryAddWithoutValidation("accept", "application/json");
-                var uri_UpComingMovies = prefix_upcomingMovies + "?api_key=" + apiKey + "&language=en-US";
-                var uri_PopularMovies = prefix_popularMovies + "?api_key=" + apiKey + "&language=en-US";
+                var uri_UpComingMovies = prefix_upcomingMovies + "?api_key=" + apiKey + "&language="+ LanguageEnglish;
+                var uri_PopularMovies = prefix_popularMovies + "?api_key=" + apiKey + "&language=" + LanguageEnglish + "&page=" + page_popularMoviesStart.ToString();
 
                 HttpResponseMessage response = await httpClient.GetAsync(uri_UpComingMovies);
                 HttpResponseMessage response_popularMovies = await httpClient.GetAsync(uri_PopularMovies);
@@ -58,6 +60,7 @@ namespace WHATISNEXT.Controllers
                 vm.PopularMoviesViewModel = List_PopularMovies;
                 vm.TotalPagesPopularmovies = getTotalPages_popularmovies;
                 vm.TotalPagesUpcomingmovies = getTotalPages_upcomingmovies;
+                
                 return View(vm);
             }
         }
