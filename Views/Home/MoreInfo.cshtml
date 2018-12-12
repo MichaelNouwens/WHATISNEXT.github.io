@@ -1,0 +1,59 @@
+﻿@model WHATISNEXT.Models.detailMovies.RootObject
+@{
+    ViewBag.Title = "MoreInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background-color: #fff;
+    }
+</style>
+
+<h2>MoreInfo</h2>
+<br />
+<div class="container p-5">
+    <div class="row">
+
+
+        <div class="col-6">
+            <h2 class="text-center text-uppercase">@Html.DisplayFor(modelItem => modelItem.title)</h2>
+            <br />
+
+
+            <br /><br />
+            @*@Html.EditorFor(model => model, new { htmlAttributes = new { @class = "form-control" }, })*@
+
+            <h6>Release Date</h6>
+            <p>@Html.DisplayFor(modelItem => modelItem.release_date)</p><br />
+            <h6>Overview</h6>
+            <p>@Html.DisplayFor(modelItem => modelItem.overview)</p> <br />
+            <h6>Popularity</h6>
+            <p> @Html.DisplayFor(modelItem => modelItem.popularity)</p>
+            <h6>Rating</h6>
+            <p> @Html.DisplayFor(modelItem => modelItem.vote_count)</p>
+        </div>
+        <div class="col-6">
+            <img class="d-block w-50 mx-auto"
+                 src="@String.Concat("https://image.tmdb.org/t/p/w780", @Html.DisplayFor(modelItem => modelItem.poster_path))"
+                 alt="@Html.DisplayFor(modelItem => modelItem.title)">
+
+            <div class="text-center p-2">
+                @foreach (var item in Model.genres)
+                {
+                    <a href="#">
+                        <span class="badge badge-pill badge-success">@Html.DisplayFor(modelItem => item.name)</span>
+                    </a>
+                }
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+
+
+</div>
+

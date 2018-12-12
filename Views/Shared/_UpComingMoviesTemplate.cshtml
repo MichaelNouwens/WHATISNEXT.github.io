@@ -15,9 +15,11 @@
                     @foreach (var item in Model.UpComingMoviesViewModel)
                     {
                         <div class="carousel-item @(first ? Html.Raw("active") : Html.Raw(""))">
-                            <img class="d-block w-100"
-                                 src="@String.Concat("https://image.tmdb.org/t/p/original", @Html.DisplayFor(modelItem => item.backdrop_path))"
-                                 alt="@item.title">
+                            <a href='@Url.Action("MoreInfo", "Home", new { item.id  })'>
+                                <img class="d-block w-100"
+                                     src="@String.Concat("https://image.tmdb.org/t/p/original", @Html.DisplayFor(modelItem => item.backdrop_path))"
+                                     alt="@item.title">
+                            </a>                      
                             <div class="carousel-caption d-none d-md-block" style="white-space: nowrap; ">
                                 <h4>@Html.DisplayFor(modelItem => item.title)</h4>
 
