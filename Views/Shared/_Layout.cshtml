@@ -17,68 +17,42 @@
 
         <div class="collapse navbar-collapse" id="navbarColor03">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                @*<li class="nav-item active">
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                @*<li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>*@
+
+                </li>*@
+                <li class="nav-item active">@Html.ActionLink("Home", "Index", "Home", new { @class = "nav-link" })</li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Genres
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Movie</a>
-                        <a class="dropdown-item" href="#">TV</a>
+                        <a class="dropdown-item">@Html.ActionLink("TV List", "TVGenre", "Home", new { @class = "dropdown-item" })</a>
+                        <a class="dropdown-item">@Html.ActionLink("Movie List", "MovieGenre", "Home", new { @class = "dropdown-item" })</a>
+                        @*<a class="dropdown-item" href="#">Movie List</a>*@
 
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Movies
+                        Rate
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Top rated movies</a>
-                        <a class="dropdown-item" href="#">Upcoming movies</a>
-                        <a class="dropdown-item" href="#">Now playing movies</a>
-                        <a class="dropdown-item" href="#">Popular movies</a>
-                        @*<div class="dropdown-divider"></div>*@
-
+                        <a class="dropdown-item" href="#">Movies</a>
+                        <a class="dropdown-item" href="#">TV Series</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        TV
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Popular TV shows</a>
-                        <a class="dropdown-item" href="#">Top rated TV shows</a>
-                        <a class="dropdown-item" href="#">On the air TV shows</a>
-                        <a class="dropdown-item" href="#">Airing today TV shows</a>
-                        @*<div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>*@
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Favourites</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        You
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Rate a TV show</a>
-                        <a class="dropdown-item" href="#">Rate a movie</a>
-                        <a class="dropdown-item" href="#">Your favourites</a>
-                        <a class="dropdown-item" href="#">Your watch list</a>
-
-
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Login</a>
-                    </div>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Watch List</a>
+                </li>
+                <li class="nav-item mx-sm-2">
+                    <button class="nav-link btn btn-outline-light" href="#">Login</button>
+                </li>
+                <li class="nav-item ">
+                    <button class="nav-link btn btn-outline-light" href="#">Register</button>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
