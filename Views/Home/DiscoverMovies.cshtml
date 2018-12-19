@@ -1,0 +1,70 @@
+﻿@model WHATISNEXT.Models.DiscoverMovies.RootObject
+
+@{
+    ViewBag.Title = "DiscoverMovies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<h3 style="color: #FF7200;">Dicover Movies</h3>
+
+<div class="container">
+    <br />
+    <div class="row">
+        @foreach (var item in Model.results)
+        {
+            <div class="card col-md-12 p-3">
+                <div class="row ">
+                    <div class="col-md-4">
+                        <img class="w-100" src="@String.Concat("https://image.tmdb.org/t/p/w780", @Html.DisplayFor(modelItem => item.poster_path))" height="600" width="200" alt="Card image cap">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-block">
+                            <h6 class="card-title">@Html.DisplayFor(modelItem => item.title)</h6>
+
+                            <p class="card-text text-justify">
+                                @Html.DisplayFor(modelItem => item.overview)
+                            </p>
+
+                            <div class="col-6 mx-auto">
+                                <a href='@Url.Action("MoreInfo", "Home", new { item.id  })'>
+                                    <span class=" btn btn-outline-dark">Check out</span>
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+
+
+
+
+    </div>
+</div>
+
+<div class="p-2">
+  
+    <ul class="pagination justify-content-center p-2">
+        <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        @*<li class="page-item">...</li>
+            <li class="page-item"><a class="page-link" href="#">@Model.TotalPagesPopularmovies</a></li>*@
+        <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</div>

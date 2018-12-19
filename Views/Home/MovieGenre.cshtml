@@ -15,8 +15,9 @@
     @foreach (var item in Model.genres)
     {
         @*<a href="href='@Url.Action("MoreInfo", "Home", new { item.id  })">   GO SOMEWHERE *@
-        <a href="#">
+        <a href='@Url.Action("DiscoverMovies", "Home", new { genre = item.id  })'>
             @Html.DisplayFor(modelItem => item.name) <br />
         </a>
     }
 </div>
+

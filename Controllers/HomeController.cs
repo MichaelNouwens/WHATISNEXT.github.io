@@ -54,7 +54,7 @@ namespace WHATISNEXT.Controllers
                 var getTotalPages_popularmovies = objResponse_popularMovies.total_pages;
                 IList<upcomingMovies.Result> List_UpComingMovies = objResponse_UpComingMovies.results.OfType<upcomingMovies.Result>().ToList();
                 IList<popularMovies.Result> List_PopularMovies = objResponse_popularMovies.results.OfType<popularMovies.Result>().ToList();
-
+                //add different pages to lists using for loops ? 
                 var vm = new MainPageViewModel();
                 vm.UpComingMoviesViewModel = List_UpComingMovies;
                 vm.PopularMoviesViewModel = List_PopularMovies;
@@ -70,15 +70,44 @@ namespace WHATISNEXT.Controllers
         public async Task<ActionResult> MoreInfo(int id)
         {         
             var prefix_upcomingMovies_MoreInfo = "movie/" + id.ToString();
-       
+            var prefix_reviews_movies = "movie/" + id.ToString() +"/reviews";
+            var prefix_similar_movies = "movie/" + id.ToString() + "/similar";
+            var prefix_movie_videos = "movie/" + id.ToString() + "/videos";
 
             using (var httpClient = new HttpClient { BaseAddress = baseAddress })
             {
-                var uri3 = prefix_upcomingMovies_MoreInfo + "?api_key=" + apiKey + "&language=en-US";
-                HttpResponseMessage response_MoreInfo = await httpClient.GetAsync(uri3);
+                var uri__upcomingMovies_MoreInfo = prefix_upcomingMovies_MoreInfo + "?api_key=" + apiKey + "&language=en-US";
+                var uri__reviews_movies = prefix_reviews_movies + "?api_key=" + apiKey + "&language=en-US";
+                var uri__similar_movies = prefix_similar_movies + "?api_key=" + apiKey + "&language=en-US";
+                var uri__movie_videos = prefix_movie_videos + "?api_key=" + apiKey + "&language=en-US";
+
+                HttpResponseMessage response_MoreInfo = await httpClient.GetAsync(uri__upcomingMovies_MoreInfo);
+                HttpResponseMessage response_MovieReviews = await httpClient.GetAsync(uri__reviews_movies);
+                HttpResponseMessage response_similarMovies = await httpClient.GetAsync(uri__similar_movies);
+                HttpResponseMessage response_movieVideos = await httpClient.GetAsync(uri__movie_videos);
+
                 string responseData_MoreInfo = await response_MoreInfo.Content.ReadAsStringAsync();
+                string responseData_MovieReviews = await response_MovieReviews.Content.ReadAsStringAsync();
+                string responseData_similarMovies = await response_similarMovies.Content.ReadAsStringAsync();
+                string responseData_movieVideos = await response_movieVideos.Content.ReadAsStringAsync();
+              
+
+
+                //CALL THIS 
                 var objResponse_MoreInfo = JsonConvert.DeserializeObject<detailMovies.RootObject>(responseData_MoreInfo);
-                return View(objResponse_MoreInfo);
+                var objResponse_MovieReviews = JsonConvert.DeserializeObject<movieReviews.RootObject>(responseData_MovieReviews);
+                var objResponse_similarMovies = JsonConvert.DeserializeObject<similarMovies.RootObject>(responseData_similarMovies);
+                var objResponse_movieVideos = JsonConvert.DeserializeObject<videoMovies.RootObject>(responseData_movieVideos);
+
+
+                //create a viewmodel just for "MASTER DETAIL"
+                var ms = new DetailsPageViewModel();
+                ms.DetailMoviesViewModel = objResponse_MoreInfo;
+                ms.MovieResultsViewModel = objResponse_MovieReviews;
+                ms.SimilarMoviesViewModel = objResponse_similarMovies;
+                ms.VideoMoviesViewModel = objResponse_movieVideos;
+
+                return View(ms);
             }     
         }
 
@@ -112,6 +141,31 @@ namespace WHATISNEXT.Controllers
                 return View(objResponse_TVGenres);
             }
         }
+
+        public async Task<ActionResult> DiscoverMovies(string genre)
+        {
+            var genres = genre;
+
+            //Many
+            var sortBy = "popularity.desc";
+            var language = "en-US";
+            bool includeAdult = false;
+            bool includeVideo= false;
+
+            var DiscoverM_Prefix = "discover/movie";
+           var DiscoverM_Suffix = "&language="+ language + "&sort_by="+ sortBy + "&include_adult="+ includeAdult.ToString() + "&include_video="+ includeVideo + "&with_genres="+ genres.ToString();
+
+            //https://api.themoviedb.org/3/discover/movie?api_key=de669cb60954dc927229ebd64ca39d77&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=28
+            using (var httpClient = new HttpClient { BaseAddress = baseAddress })
+            {
+                var uri_DiscoverMovies = DiscoverM_Prefix + "?api_key=" + apiKey + DiscoverM_Suffix;
+                HttpResponseMessage response_DiscoverMovies = await httpClient.GetAsync(uri_DiscoverMovies);
+                string responseData_DiscoverMovies = await response_DiscoverMovies.Content.ReadAsStringAsync();
+                var objResponse_DiscoverMovies = JsonConvert.DeserializeObject<DiscoverMovies.RootObject>(responseData_DiscoverMovies);
+                return View(objResponse_DiscoverMovies);
+            }
+        }
+
 
         public ActionResult About()
         {

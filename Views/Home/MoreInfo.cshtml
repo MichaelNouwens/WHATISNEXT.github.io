@@ -1,4 +1,4 @@
-﻿@model WHATISNEXT.Models.detailMovies.RootObject
+﻿@model WHATISNEXT.ViewModels.DetailsPageViewModel
 @{
     ViewBag.Title = "MoreInfo";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -13,43 +13,111 @@
 <h2>MoreInfo</h2>
 <br />
 <div class="container p-5">
-    <div class="row">
 
-
-        <div class="col-6">
-            <h2 class="text-center text-uppercase">@Html.DisplayFor(modelItem => modelItem.title)</h2>
-            <br />
-
-
-            <br /><br />
-            @*@Html.EditorFor(model => model, new { htmlAttributes = new { @class = "form-control" }, })*@
-
-            <h6>Release Date</h6>
-            <p>@Html.DisplayFor(modelItem => modelItem.release_date)</p><br />
-            <h6>Overview</h6>
-            <p>@Html.DisplayFor(modelItem => modelItem.overview)</p> <br />
-            <h6>Popularity</h6>
-            <p> @Html.DisplayFor(modelItem => modelItem.popularity)</p>
-            <h6>Rating</h6>
-            <p> @Html.DisplayFor(modelItem => modelItem.vote_count)</p>
-        </div>
-        <div class="col-6">
-            <img class="d-block w-50 mx-auto"
-                 src="@String.Concat("https://image.tmdb.org/t/p/w780", @Html.DisplayFor(modelItem => modelItem.poster_path))"
-                 alt="@Html.DisplayFor(modelItem => modelItem.title)">
-
-            <div class="text-center p-2">
-                @foreach (var item in Model.genres)
-                {
-                    <a href="#">
-                        <span class="badge badge-pill badge-success">@Html.DisplayFor(modelItem => item.name)</span>
-                    </a>
-                }
-            </div>
-
-
-        </div>
+    <h2 class="text-center text-uppercase">@Html.DisplayFor(modelItem => modelItem.DetailMoviesViewModel.title)</h2>
+    <img src="@String.Concat("https://image.tmdb.org/t/p/original",@Html.DisplayFor(modelItem => modelItem.DetailMoviesViewModel.backdrop_path))" height="auto" width="100%" />
+    <br />
+    <h6 class="text-center">Overview</h6><br />
+    <div style="padding-left: 20%; padding-right: 20%;">
+        <p class="text-center ">@Html.DisplayFor(modelItem => modelItem.DetailMoviesViewModel.overview)</p>
     </div>
+
+    <img class="d-block w-25 mx-auto"
+         src="@String.Concat("https://image.tmdb.org/t/p/w780", @Html.DisplayFor(modelItem => modelItem.DetailMoviesViewModel.poster_path))"
+         alt="@Html.DisplayFor(modelItem => modelItem.DetailMoviesViewModel.title)">
+
+    <div class="text-center p-2">
+        @foreach (var item in Model.DetailMoviesViewModel.genres)
+        {
+            <a href='@Url.Action("DiscoverMovies", "Home", new { genre = item.id  })'>
+                <span class="badge badge-pill badge-success">@Html.DisplayFor(modelItem => item.name)</span>
+            </a>
+        }
+    </div>
+
+    <br /><br />
+    @*@Html.EditorFor(model => model, new { htmlAttributes = new { @class = "form-control" }, })*@
+          <div class="text-center p-2">
+              <h6>Release Date</h6>
+              <p>@Html.DisplayFor(modelItem => modelItem.DetailMoviesViewModel.release_date)</p><br />
+
+              <h6>Popularity</h6>
+              <p> @Html.DisplayFor(modelItem => modelItem.DetailMoviesViewModel.popularity)</p>
+              <h6>Rating</h6>
+              <p> @Html.DisplayFor(modelItem => modelItem.DetailMoviesViewModel.vote_count)</p>
+
+              <h1>Reviews</h1>
+              @foreach (var item in Model.MovieResultsViewModel.results)
+              {
+
+                  <p> @Html.DisplayFor(modelItem => item.author)</p>
+                  <p> @Html.DisplayFor(modelItem => item.content)</p>
+
+              }
+
+              <h1>Trailers</h1>
+              @foreach (var item in Model.VideoMoviesViewModel.results)
+              {
+                  <a href="@String.Concat("https://www.youtube.com/watch?v=", @Html.DisplayFor(modelItem => item.key))" target="_blank">
+                      <span class="badge badge-pill badge-success">@Html.DisplayFor(modelItem => item.name)</span>
+                  </a>
+              }
+
+              <h1>Similar Movies</h1>
+              @*@foreach (var item in Model.SimilarMoviesViewModel.results)
+        {
+
+
+            <p> @Html.DisplayFor(modelItem => item.title)</p>
+            <p> @Html.DisplayFor(modelItem => item.overview)</p>
+            <a class="btn btn-outline-dark" href='@Url.Action("MoreInfo", "Home", new { item.id  })'>Check Details</a>
+
+            <hr />
+        }*@
+
+              <div class="container">
+
+                  <div class="row">
+                      @foreach (var item in Model.SimilarMoviesViewModel.results)
+                      {
+                          <div class="card col-md-12 p-3">
+                              <div class="row ">
+                                  <div class="col-md-4">
+                                      <img class="w-100" src="@String.Concat("https://image.tmdb.org/t/p/w780", @Html.DisplayFor(modelItem => item.poster_path))" height="600" width="200" alt="Card image cap">
+                                  </div>
+                                  <div class="col-md-8">
+                                      <div class="card-block">
+                                          <h6 class="card-title">@Html.DisplayFor(modelItem => item.title)</h6>
+
+                                          <p class="card-text text-justify">
+                                              @Html.DisplayFor(modelItem => item.overview)
+                                          </p>
+
+                                          <div class="col-6 mx-auto">
+                                              <a href='@Url.Action("MoreInfo", "Home", new { item.id  })'>
+                                                  <span class=" btn btn-outline-dark">Check out</span>
+                                              </a>
+
+                                          </div>
+
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      }
+
+
+
+
+
+                  </div>
+              </div>
+
+
+
+
+          </div>
+
 
 
 
