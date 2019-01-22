@@ -11,13 +11,18 @@
 
 
 <div class="container p-5">
-    <h2>Movie Genres</h2>
+    <h2 class="ChangeColorText">Movie Genres</h2>
     @foreach (var item in Model.genres)
     {
         @*<a href="href='@Url.Action("MoreInfo", "Home", new { item.id  })">   GO SOMEWHERE *@
-        <a href='@Url.Action("DiscoverMovies", "Home", new { genre = item.id  })'>
-            @Html.DisplayFor(modelItem => item.name) <br />
-        </a>
+        <ul >
+            <li>
+                <a class="btn btn-outline-light" href='@Url.Action("DiscoverMovies", "Home", new { genre = item.id})'>
+                    @Html.DisplayFor(modelItem => item.name) <br />
+                </a>
+            </li>
+        </ul>
+    
     }
 </div>
 

@@ -6,10 +6,23 @@
 }
 
 
-
 @Html.Partial("_UpComingMoviesTemplate")
 
 @Html.Partial("_PopularMovies")
 
 
+<hr />
+<br />
+@Html.Partial("_SearchMovies")
 
+
+<button class="fixed-button wobble" onclick="hello()" type="button">
+    <i class="ion-plus-round">SWITCH</i>
+</button>
+
+<script>
+
+    function hello() {
+        alert('Hello Word');
+    }
+</script>

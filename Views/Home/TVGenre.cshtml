@@ -9,12 +9,18 @@
 <br />
 
 <div class="container p-5">
-    <h2>TV Genres</h2>
+    <h2 class="ChangeColorText">TV Genres</h2>
     @foreach (var item in Model.genres)
     {
         @*<a href="href='@Url.Action("MoreInfo", "Home", new { item.id  })">   GO SOMEWHERE *@
-        <a href="#">
-            @Html.DisplayFor(modelItem => item.name) <br />
-        </a>
+        <ul>
+            <li>
+                <a class="btn btn-outline-light" href='#'>
+                    @Html.DisplayFor(modelItem => item.name) <br />
+                </a>
+            </li>
+        </ul>
+
     }
 </div>
+

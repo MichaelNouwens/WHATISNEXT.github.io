@@ -1,0 +1,18 @@
+﻿@model WHATISNEXT.ViewModels.MainPageViewModel
+
+
+@using (Html.BeginForm("SearchMovies", "Home", FormMethod.Post))
+{
+    <div class="d-flex justify-content-center">
+
+        @Html.TextBoxFor(q => q.Query, new { placeholder = "Search Movies", @class = "form-control form-rounded mr-sm-2 col-4 " })
+        <input type="submit" id="SearchSubmit" value="Search" class="nav-link btn btn-outline-light my-2 my-sm-0" />
+
+    </div>
+    @*<input name="SearchData" id="SearchData" type="text"/>*@
+    <br /><br />
+}
+
+@*<input class="form-control mr-sm-2" type="text" placeholder="Search" style="padding-right: 30px;">
+
+    <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>*@

@@ -16,16 +16,19 @@
                     {
                         <div class="carousel-item @(first ? Html.Raw("active") : Html.Raw(""))">
                             <a href='@Url.Action("MoreInfo", "Home", new { item.id  })'>
-                                <img class="d-block w-100"
+                                <img class="d-block w-100" style="  background-position: center; background-repeat: no-repeat; background-size: cover;"
                                      src="@String.Concat("https://image.tmdb.org/t/p/original", @Html.DisplayFor(modelItem => item.backdrop_path))"
-                                     alt="@item.title">
+                                     alt="@item.title"
+                                    
+                                   >
                             </a>                      
-                            <div class="carousel-caption d-none d-md-block" style="white-space: nowrap; ">
-                                <h4>@Html.DisplayFor(modelItem => item.title)</h4>
+                            <div class="carousel-caption" style="white-space: nowrap; ">
+                                <h4 class="text-center" style="color: white;">@Html.DisplayFor(modelItem => item.title)</h4>
 
                             </div>
 
                         </div>
+                
                         first = false;
                     }
 
@@ -44,7 +47,7 @@
         </div>
     </div>
     <div class="p-2">
-        <h3 class=" text-center justify-content-center" style="color: #FF7200;">Upcoming Movies</h3>
+        <h3 class=" text-center justify-content-center" style="color: #00BBFF;">Upcoming Movies</h3>
         @*<ul class="pagination justify-content-center p-2">
             <li class="page-item disabled">
                 <a class="page-link" href="#" tabindex="-1">Previous</a>

@@ -1,17 +1,18 @@
-﻿@model WHATISNEXT.Models.DiscoverMovies.RootObject
+﻿@model WHATISNEXT.Models.SearchMovies.RootObject
 
 @{
-    ViewBag.Title = "DiscoverMovies";
+    ViewBag.Title = "SearchMovies";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<br />
+<br />
+<br />
+<br />
+<br />
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<h3 class="text-center ChangeColorText">Dicover Movies</h3>
+
+<h3 class="text-center ChangeColorText"> Movies using keyword: @ViewBag.MoviesQuery</h3>
 
 <div class="container">
     <br />
@@ -33,7 +34,7 @@
 
                             <div class="col-6 mx-auto">
                                 <a href='@Url.Action("MoreInfo", "Home", new { item.id  })'>
-                                    <span class="nav-link btn btn-outline-light">Check out</span>
+                                    <span class=" btn btn-outline-dark">Check out</span>
                                 </a>
 
                             </div>
@@ -51,8 +52,9 @@
     </div>
 </div>
 
+
 <div class="p-2">
-  
+
     <ul class="pagination justify-content-center p-2">
         <li class="page-item disabled">
             <a class="page-link" href="#" tabindex="-1">Previous</a>

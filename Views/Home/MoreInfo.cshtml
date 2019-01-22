@@ -14,7 +14,7 @@
 <br />
 <div class="container p-5">
 
-    <h2 class="text-center text-uppercase">@Html.DisplayFor(modelItem => modelItem.DetailMoviesViewModel.title)</h2>
+    <h2 class="text-center text-uppercase ChangeColorText">@Html.DisplayFor(modelItem => modelItem.DetailMoviesViewModel.title)</h2>
     <img src="@String.Concat("https://image.tmdb.org/t/p/original",@Html.DisplayFor(modelItem => modelItem.DetailMoviesViewModel.backdrop_path))" height="auto" width="100%" />
     <br />
     <h6 class="text-center">Overview</h6><br />
@@ -30,7 +30,7 @@
         @foreach (var item in Model.DetailMoviesViewModel.genres)
         {
             <a href='@Url.Action("DiscoverMovies", "Home", new { genre = item.id  })'>
-                <span class="badge badge-pill badge-success">@Html.DisplayFor(modelItem => item.name)</span>
+                <span class="btn btn-outline-light">@Html.DisplayFor(modelItem => item.name)</span>
             </a>
         }
     </div>
@@ -59,7 +59,7 @@
               @foreach (var item in Model.VideoMoviesViewModel.results)
               {
                   <a href="@String.Concat("https://www.youtube.com/watch?v=", @Html.DisplayFor(modelItem => item.key))" target="_blank">
-                      <span class="badge badge-pill badge-success">@Html.DisplayFor(modelItem => item.name)</span>
+                      <span class="btn btn-outline-light">@Html.DisplayFor(modelItem => item.name)</span>
                   </a>
               }
 
@@ -95,7 +95,7 @@
 
                                           <div class="col-6 mx-auto">
                                               <a href='@Url.Action("MoreInfo", "Home", new { item.id  })'>
-                                                  <span class=" btn btn-outline-dark">Check out</span>
+                                                  <span class="nav-link btn btn-outline-light">Check out</span>
                                               </a>
 
                                           </div>

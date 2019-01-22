@@ -565,6 +565,13 @@ pre {
     height: 20%;
 }
 
+
+.carouselOther {
+    position: relative;
+
+    height: 20%;
+}
+
 .carousel-inner {
 
     position: relative;
@@ -3300,7 +3307,7 @@ fieldset:disabled a.btn {
 
 .btn-outline-light {
     color: #f8f9fa;
-    background-color: transparent;
+    background-color: #00BBFF;
     background-image: none;
     border-color: #f8f9fa;
 }
@@ -4421,6 +4428,7 @@ input[type="button"].btn-block {
 
     .nav-link:hover, .nav-link:focus {
         text-decoration: none;
+        color: #00BBFF !important;
     }
 
     .nav-link.disabled {
@@ -5320,13 +5328,13 @@ input[type="button"].btn-block {
     margin-left: -1px;
     line-height: 1.25;
     color: #fff;
-    background-color: #FF7200;
+    background-color: #00BBFF;
     border: 1px solid #ddd;
 }
 
     .page-link:hover {
         z-index: 2;
-        color: #1559cf;
+        color: #4582EC !important;
         text-decoration: none;
         background-color: #fff;
         border-color: #ddd;
