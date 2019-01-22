@@ -15,7 +15,7 @@
         @*<a href="href='@Url.Action("MoreInfo", "Home", new { item.id  })">   GO SOMEWHERE *@
         <ul>
             <li>
-                <a class="btn btn-outline-light" href='#'>
+                <a class="btn btn-outline-light" href='@Url.Action("Oops", "Home")'>
                     @Html.DisplayFor(modelItem => item.name) <br />
                 </a>
             </li>

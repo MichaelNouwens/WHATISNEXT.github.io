@@ -227,5 +227,11 @@ namespace WHATISNEXT.Controllers
 
             return View();
         }
+
+        public ActionResult Oops()
+        {
+            return View();
+        }
+
     }
 }

@@ -11,7 +11,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 
-        <img class="navbar-brand" src="~/Content/newWHATISNEXTLOGO.png" height="70" />
+        <img class="navbar-brand" src="~/Content/mainlogo.png" height="70" />
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,25 +39,24 @@
                         Rate
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Movies</a>
-                        <a class="dropdown-item" href="#">TV Series</a>
+                        <a class="dropdown-item">@Html.ActionLink("Movies", "Oops", "Home", new { @class = "dropdown-item" })</a>
+                        <a class="dropdown-item">@Html.ActionLink("TV Series", "Oops", "Home", new { @class = "dropdown-item" })</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Favourites</a>
+                    @Html.ActionLink("Favourites", "Oops", "Home", new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Watch List</a>
+                    @Html.ActionLink("Wath List", "Oops", "Home", new { @class = "nav-link" })
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Download our App</a>
+                    @Html.ActionLink("Movies", "Oops", "Home", new { @class = "nav-link" })
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0 p-3">
-                <button class="nav-link btn btn-outline-light mr-sm-2" href="#">Login</button>
-                <button class="nav-link btn btn-outline-light my-2 my-sm-0" href="#">Register</button>
-
-
+      
+                @Html.ActionLink("Login", "Oops", "Home", new { @class = "nav-link btn btn-outline-light mr-sm-2" })
+                @Html.ActionLink("Register", "Oops", "Home", new { @class = "nav-link btn btn-outline-light my-2 my-sm-0" })
 
             </form>
         </div>
@@ -97,9 +96,9 @@
                                     <div class="col-md-6">
                                         <ul>
                                             <li>@Html.ActionLink("Home", "Index", "Home") </li>
-                                            <li> <a href="#"> Rate</a> </li>
-                                            <li> <a href="#"> Favourites</a> </li>
-                                            <li> <a href="#"> Watch List</a> </li>
+                                            <li> <a href="@Url.Action("Oops", "Home")"> Rate</a> </li>
+                                            <li> <a href="@Url.Action("Oops", "Home")"> Favourites</a> </li>
+                                            <li> <a href="@Url.Action("Oops", "Home")"> Watch List</a> </li>
                                         </ul>
                                     </div>
 
